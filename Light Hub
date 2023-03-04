@@ -1,0 +1,148 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Light Hub", HidePremium = false, SaveConfig = true, IntroText = "Light Hub"})
+
+local CreditsTab = Window:MakeTab({
+	Name = "Credits",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+OrionLib:MakeNotification({
+	Name = "Be A Parkour Ninja ",
+	Content = "Subscribe To Hazzleシ Or No Cookie",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
+
+local Tab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "Main"
+})
+
+Tab:AddButton({
+	Name = "Hitbox!",
+	Callback = function()
+_G.HeadSize = 50
+_G.Disabled = true
+
+game:GetService('RunService').RenderStepped:connect(function()
+if _G.Disabled then
+for i,v in next, game:GetService('Players'):GetPlayers() do
+if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+pcall(function()
+v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize)
+v.Character.HumanoidRootPart.Transparency = 0.7
+v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really black")
+v.Character.HumanoidRootPart.Material = "Neon"
+v.Character.HumanoidRootPart.CanCollide = false
+end)
+end
+end
+end
+end)
+      		print("button pressed")
+  	end    
+})
+
+Tab:AddButton({
+	Name = "ESP",
+	Callback = function()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/zachisfunny/esp-unversal/main/script'),true))()
+      		print("button pressed")
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Speed!",
+	Callback = function()
+		local walkSpeed = 75
+
+
+
+local gmt = getrawmetatable(game)
+
+setreadonly(gmt, false)
+
+local oldindex = gmt.__index
+
+gmt.__index = newcclosure(function(self,b)
+
+if b == "WalkSpeed" then
+
+return 16
+
+end
+
+return oldindex(self,b)
+
+end)
+
+
+
+game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = walkSpeed
+      		print("button pressed")
+  	end    
+})
+
+ScriptTab:AddButton({
+	Name = "AutoFarm(Can Kick You) ",
+	Callback = function()
+
+spawn(function()
+ while task.wait() do
+pcall(function()
+  game:GetService'VirtualUser':Button1Down(Vector2.new(0.9,0.9))
+       game:GetService'VirtualUser':Button1Up(Vector2.new(0.9,0.9))
+
+for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+       if v.name == "Katana" then -- change name of tool here
+           v.Parent = game.Players.LocalPlayer.Character
+end end end) end end)
+
+spawn(function()
+ while task.wait(0.1) do
+pcall(function()
+
+local Player = game.Players.LocalPlayer
+local cpos = Player.Character.HumanoidRootPart.CFrame
+           for i,v in pairs(game.Players:GetPlayers()) do
+       if v.Name ~= Player.Name then
+           local i = 10
+           repeat
+           wait(0.5)
+           i = i-1
+local CFrameEnd = CFrame.new(v.Character.HumanoidRootPart.position)
+local Time = 0.3
+local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = CFrameEnd})
+tween:Play()
+tween.Completed:Wait(E)
+
+until i == 0 or game.Players[v.Name].Character.Humanoid.Health == 0
+end end end) end end)
+spawn(function()
+ while task.wait(3) do
+pcall(function()
+if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+game:GetService("ReplicatedStorage").RemoteTriggers.SpawnIn:FireServer()
+end end) end end)
+      		print("button pressed")
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Inf jumps!",
+	Callback = function()
+		local InfiniteJumpEnabled = true
+game:GetService("UserInputService").JumpRequest:connect(function()
+	if InfiniteJumpEnabled then
+		game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+	end
+end)
+      	print("button pressed")
+  	end    
+})
